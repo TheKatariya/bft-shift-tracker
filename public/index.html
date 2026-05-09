@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BFT Shift Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="logo">BFT</div>
+      <div class="header-text">
+        <h1>Shift Tracker</h1>
+        <p>Front Desk End-of-Shift Recap</p>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span id="progress-pct">0</span>%</div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+    </header>
+
+    <form id="shift-form" novalidate>
+
+      <section class="card" data-section="1">
+        <div class="section-num">01</div>
+        <h2>Pre-Shift</h2>
+        <div class="field">
+          <label for="staff_name">Your Name <span class="req">*</span></label>
+          <input type="text" id="staff_name" name="staff_name" placeholder="Full name" required />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="shift_date">Date <span class="req">*</span></label>
+            <input type="date" id="shift_date" name="shift_date" required />
+          </div>
+          <div class="field">
+            <label>Shift Type <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio-opt"><input type="radio" name="shift_type" value="AM" required /> AM</label>
+              <label class="radio-opt"><input type="radio" name="shift_type" value="PM" /> PM</label>
+              <label class="radio-opt"><input type="radio" name="shift_type" value="Weekend" /> Weekend</label>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="todays_focus">Today's Focus — pick one</label>
+          <select id="todays_focus" name="todays_focus">
+            <option value="">Select…</option>
+            <option>Bookings</option>
+            <option>Conversations</option>
+            <option>Sales</option>
+            <option>Confidence on calls</option>
+            <option>Energy/connection</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>My Goals This Shift</label>
+          <div class="check-grid">
+            <label class="check-opt"><input type="checkbox" name="goals" value="Calls min. 50" /> Calls min. 50</label>
+            <label class="check-opt"><input type="checkbox" name="goals" value="Conversations" /> Conversations</label>
+            <label class="check-opt"><input type="checkbox" name="goals" value="Bookings" /> Bookings</label>
+            <label class="check-opt"><input type="checkbox" name="goals" value="Sales" /> Sales</label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-section="2">
+        <div class="section-num">02</div>
+        <h2>Opening Tasks</h2>
+        <div class="check-grid">
+          <label class="check-opt"><input type="checkbox" name="opening_tasks" value="Lights on / music" /> Lights on / music</label>
+          <label class="check-opt"><input type="checkbox" name="opening_tasks" value="Doors unlocked" /> Doors unlocked</label>
+          <label class="check-opt"><input type="checkbox" name="opening_tasks" value="System logins" /> System logins</label>
+          <label class="check-opt"><input type="checkbox" name="opening_tasks" value="Towels stocked" /> Towels stocked</label>
+          <label class="check-opt"><input type="checkbox" name="opening_tasks" value="New prospects checked" /> New prospects checked</label>
+          <label class="check-opt"><input type="checkbox" name="opening_tasks" value="New leads checked" /> New leads checked</label>
+          <label class="check-opt"><input type="checkbox" name="opening_tasks" value="Messages replied" /> Messages replied</label>
+          <label class="check-opt"><input type="checkbox" name="opening_tasks" value="Voicemails handled" /> Voicemails handled</label>
+        </div>
+      </section>
+
+      <section class="card" data-section="3">
+        <div class="section-num">03</div>
+        <h2>During Shift — Activity</h2>
+        <div class="metrics-grid">
+          <div class="metric-group">
+            <h3>Outreach</h3>
+            <div class="field"><label for="calls_made">Calls Made</label><input type="number" id="calls_made" name="calls_made" min="0" value="0" /></div>
+            <div class="field"><label for="conversations">Conversations</label><input type="number" id="conversations" name="conversations" min="0" value="0" /></div>
+            <div class="field"><label for="text_conversations">Text Conversations</label><input type="number" id="text_conversations" name="text_conversations" min="0" value="0" /></div>
+            <div class="field"><label for="emails_sent">Emails Sent</label><input type="number" id="emails_sent" name="emails_sent" min="0" value="0" /></div>
+          </div>
+          <div class="metric-group">
+            <h3>Results</h3>
+            <div class="field"><label for="bookings">Bookings</label><input type="number" id="bookings" name="bookings" min="0" value="0" /></div>
+            <div class="field"><label for="shows">Shows</label><input type="number" id="shows" name="shows" min="0" value="0" /></div>
+            <div class="field"><label for="new_members">New Members</label><input type="number" id="new_members" name="new_members" min="0" value="0" /></div>
+            <div class="field"><label for="pack_holders">Pack Holders</label><input type="number" id="pack_holders" name="pack_holders" min="0" value="0" /></div>
+            <div class="field"><label for="sales">Sales ($)</label><input type="number" id="sales" name="sales" min="0" value="0" /></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-section="4">
+        <div class="section-num">04</div>
+        <h2>Quality Control</h2>
+        <div class="check-grid">
+          <label class="check-opt"><input type="checkbox" name="quality_checks" value="Double dial followed" /> Double dial followed</label>
+          <label class="check-opt"><input type="checkbox" name="quality_checks" value="Voicemails left" /> Voicemails left</label>
+          <label class="check-opt"><input type="checkbox" name="quality_checks" value="Texts sent" /> Texts sent</label>
+          <label class="check-opt"><input type="checkbox" name="quality_checks" value="Notes updated in CRM" /> Notes updated in CRM</label>
+          <label class="check-opt"><input type="checkbox" name="quality_checks" value="Facility clean" /> Facility clean</label>
+          <label class="check-opt"><input type="checkbox" name="quality_checks" value="Lead pipeline reviewed" /> Lead pipeline reviewed</label>
+        </div>
+      </section>
+
+      <section class="card" data-section="5">
+        <div class="section-num">05</div>
+        <h2>End of Shift — Reflection</h2>
+        <div class="field"><label for="moved_needle">What actually moved the needle today?</label><textarea id="moved_needle" name="moved_needle" rows="3" placeholder="Be specific…"></textarea></div>
+        <div class="field"><label for="avoided_hesitated">Where did I avoid or hesitate?</label><textarea id="avoided_hesitated" name="avoided_hesitated" rows="3" placeholder="Be honest…"></textarea></div>
+        <div class="field"><label for="do_better">What will I do better next shift?</label><textarea id="do_better" name="do_better" rows="3" placeholder="One clear action…"></textarea></div>
+        <div class="field"><label for="biggest_win">Biggest Shift Win</label><textarea id="biggest_win" name="biggest_win" rows="2" placeholder="Celebrate it!"></textarea></div>
+        <div class="field"><label for="cleaning_notes">Cleaning Notes for Next Shift</label><textarea id="cleaning_notes" name="cleaning_notes" rows="2" placeholder="Anything that needs attention…"></textarea></div>
+        <div class="field"><label for="management_notes">Management Notes</label><textarea id="management_notes" name="management_notes" rows="2" placeholder="Anything for management…"></textarea></div>
+      </section>
+
+      <div class="submit-row">
+        <div id="form-error" class="form-error" hidden></div>
+        <button type="submit" id="submit-btn">Submit Shift Recap</button>
+      </div>
+    </form>
+
+    <div id="success-screen" hidden>
+      <div class="success-card">
+        <div class="success-icon">✓</div>
+        <h2>Shift Recap Saved</h2>
+        <p>Great work today. Your recap has been recorded.</p>
+        <button onclick="resetForm()">Start New Recap</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
